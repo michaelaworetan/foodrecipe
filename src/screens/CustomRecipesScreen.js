@@ -28,7 +28,7 @@ import {
     );
     console.log('favoriteRecipe from custom',favoriteRecipe);
     
-    const isFavourite = favoriteRecipe.includes(recipe.idCategory); // Adjust this according to your recipe structure
+    // const isFavourite = favoriteRecipe.includes(recipe.idCategory); // Adjust this according to your recipe structure
   
     if (!recipe) {
       return (
@@ -37,6 +37,10 @@ import {
         </View>
       );
     }
+
+     const isFavourite = favoriteRecipe.some(
+      (item) => item.idFood === recipe.idFood
+    );
   
     const handleToggleFavorite = () => {
       dispatch(toggleFavorite(recipe)); // Adjust the action to handle recipe
@@ -61,7 +65,7 @@ import {
             onPress={() => navigation.goBack()}
             style={styles.backButton}
           >
-            <Text>Back</Text>
+            <Text>Go Back</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleToggleFavorite}
